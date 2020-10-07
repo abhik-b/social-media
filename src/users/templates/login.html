@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-form div {
+            margin: 20px 5px;
+            width: 45%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input {
+            width: 350px;
+        }
+
+        button {
+            /* display: block; */
+            border: none;
+            background: rgb(0, 255, 64);
+            width: 100%;
+            height: 25px;
+            color: #131313;
+        }
+
+        @media only screen and (max-width: 1024px) {
+            .login-form div {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            input {
+                width: 90%;
+                padding: 5px;
+            }
+
+            button {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Login for social-media</h1>
+    <form class="login-form" action="/login/" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="username">Username : </label>
+            <input type="text" name="username" />
+        </div>
+        <div>
+            <label for="password">Password : </label>
+            <input type="password" name="password" />
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</body>
+
+</html>

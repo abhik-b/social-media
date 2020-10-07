@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signup-form div {
+            margin: 20px 5px;
+            width: 45%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input {
+            width: 350px;
+        }
+
+        button {
+            /* display: block; */
+            border: none;
+            background: rgb(0, 255, 64);
+            width: 100%;
+            height: 25px;
+            color: #131313;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .signup-form div {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            input {
+                width: 90%;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Signup for social-media</h1>
+    <form class="signup-form" method="POST" action="/signup/">
+        {% csrf_token %}
+        <div>{{form.username.label_tag}} {{form.username}}</div>
+        <div>{{form.password1.label_tag}} {{form.password1}}</div>
+        <div>{{form.password2.label_tag}} {{form.password2}}</div>
+        <div>{{form.bio.label_tag}} {{form.bio}}</div>
+        <div>
+            <button type="submit">Signup</button>
+        </div>
+    </form>
+    {{error}}
+</body>
+
+</html>
