@@ -4,11 +4,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Signup</title>
     <style>
         h1 {
             text-align: center;
+            color: rgb(26, 26, 26);
+            text-decoration: underline;
         }
+
+
+
+        p,
+        .signup-form ul {
+            font-size: 12px;
+            width: 80%;
+            text-align: center;
+            color: rgb(0, 88, 22);
+            padding: 0 10px;
+            list-style: none;
+            /* margin-left: 50px; */
+        }
+
+
+
 
         .signup-form {
             display: flex;
@@ -16,16 +34,23 @@
             align-items: center;
         }
 
-        .signup-form div {
+        .field-wrapper {
             margin: 20px 5px;
-            width: 45%;
+            width: 60%;
             display: flex;
             justify-content: space-between;
         }
 
+        .field-wrapper div {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            /* margin-left: 50px; */
+        }
+
         input,
         textarea {
-            width: 350px;
+            width: 100%;
         }
 
         button {
@@ -38,9 +63,13 @@
         }
 
         @media only screen and (max-width: 768px) {
-            .signup-form div {
+            .field-wrapper {
                 flex-direction: column;
                 width: 100%;
+            }
+
+            .field-wrapper div {
+                width: 100%
             }
 
             input,
@@ -56,11 +85,17 @@
     <h1>Signup for social-media</h1>
     <form class="signup-form" method="POST" action="/signup/">
         {% csrf_token %}
-        <div>{{form.username.label_tag}} {{form.username}}</div>
-        <div>{{form.password1.label_tag}} {{form.password1}}</div>
-        <div>{{form.password2.label_tag}} {{form.password2}}</div>
-        <div>{{form.bio.label_tag}} {{form.bio}}</div>
-        <div>
+        {% for field in form %}
+        <p class='error'>{{field.errors}}</p>
+        <div class="field-wrapper">
+            <div>{{field.label_tag}}</div>
+            <div>
+                {{field}}
+                <p>{{field.help_text}}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="field-wrapper">
             <button type="submit">Signup</button>
         </div>
     </form>
