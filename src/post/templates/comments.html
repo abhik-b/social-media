@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.container{
+    display:grid;
+    grid-template-columns: 50% 50%;
+    padding: 30px;
+}
+form{
+    padding: 20px;
+}
+form input{
+    width:125px
+}
+.comments{
+    display: flex;
+    flex-direction: column;
+    
+}
+.comment{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 70%;
+    justify-content: space-between;
+    gap:10%;
+}
+.comment div{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 0;
+}
+.comment div h2{
+    width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fc17a4;
+      background-size: cover;
+    margin-left: 25px;
+}
+    </style>
+</head>
+<body>
+    {% extends 'homepage.html' %}
+    {% block content %}
+    <div class="container">
+<form action={{action}} method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Reply</button>
+</form>
+<div class="comments">
+    <h1>Comments</h1>
+    {% for comment in comments %}
+   <div class="comment">
+    
+    <div>
+        <h2></h2>
+        <h4>{{comment.user}}</h4>    
+    </div>
+    
+    <h3>{{comment.content}}</h3>
+    </div>
+    {% endfor %}
+</div>
+    </div>
+    {% endblock %}
+</body>
+</html>

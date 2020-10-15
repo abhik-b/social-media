@@ -14,14 +14,31 @@
         {% endif %}
     </title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
         body {
             margin: 0;
         }
+        header{
+            display: grid;
+            grid-template-columns: 80% 15%;
+              grid-template-rows: 100%;
+            gap: 5%;
+        }
+        .logo{
+           
+            place-items: center;
+            
+            padding: 10px 5px;
+            font-family: 'Kaushan Script', cursive;
+            font-size:24px;
+            color: #00e151;
+        }
 
         .current-user {
-            position: fixed;
+            /* position: fixed;
             right: 35px;
-            top: 0px;
+            top: 0px; */
             padding: 10px 5px;
         }
 
@@ -49,13 +66,17 @@
             text-decoration: none;
         }
 
-       
+       .block-content{
+           padding-top:20px ;
+       }
 
        
     </style>
 </head>
 
 <body>
+    <header>
+    <div class="logo">Social Media</div>
     <div class="current-user">
         {% if user.is_authenticated %}
         <h2>Logged in as </h2>
@@ -65,9 +86,11 @@
         <a href="/login/">Please Login</a>
         {% endif %}
     </div>
-    
+</header>
+    <div class="block-content">
     {% block content %}
     {% endblock  %}
+    </div>
 </body>
 
 </html>
